@@ -1000,6 +1000,7 @@ pub enum DisplaySync {
     Recent,
     /// Tear the currently displayed frame when presenting a new one.
     Tear,
+    AutoVsync,
 }
 
 #[derive(Copy, Clone, Debug, Default, Hash, Eq, PartialEq)]

@@ -747,6 +747,10 @@ impl super::Context {
                 .as_slice(),
             ),
             crate::DisplaySync::Tear => (2, [vk::PresentModeKHR::IMMEDIATE].as_slice()),
+            crate::DisplaySync::AutoVsync => (
+                3,
+                [vk::PresentModeKHR::FIFO_RELAXED, vk::PresentModeKHR::FIFO].as_slice(),
+            ),
         };
         let effective_frame_count = requested_frame_count.max(capabilities.min_image_count);
 
@@ -760,6 +764,7 @@ impl super::Context {
             .find(|mode| present_modes.contains(mode))
             .unwrap();
         log::info!("Using surface present mode {:?}", present_mode);
+        println!("Using surface present mode {:?}", present_mode);
 
         let queue_families = [self.queue_family_index];
 

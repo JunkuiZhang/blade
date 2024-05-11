@@ -81,7 +81,7 @@ impl Example {
                 depth: 1,
             },
             usage: gpu::TextureUsage::TARGET,
-            display_sync: gpu::DisplaySync::Recent,
+            display_sync: gpu::DisplaySync::AutoVsync,
             ..Default::default()
         });
 
@@ -400,8 +400,9 @@ fn main() {
                         if frame_count == 100 {
                             let accum_time = last_snapshot.elapsed().as_secs_f32();
                             println!(
-                                "Avg frame time {}ms",
-                                accum_time * 1000.0 / frame_count as f32
+                                "Avg frame time {:.3}ms, FPS: {:.3}",
+                                accum_time * 1000.0 / frame_count as f32,
+                                frame_count as f32 / accum_time
                             );
                             last_snapshot = std::time::Instant::now();
                             frame_count = 0;
