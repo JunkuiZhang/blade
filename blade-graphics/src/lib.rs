@@ -1000,6 +1000,8 @@ pub enum DisplaySync {
     Recent,
     /// Tear the currently displayed frame when presenting a new one.
     Tear,
+    /// Every vertical blanking period, the presentation engine will
+    /// pop a frame off the queue to display.
     AutoVsync,
 }
 
